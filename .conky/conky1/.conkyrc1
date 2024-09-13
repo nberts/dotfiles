@@ -1,0 +1,77 @@
+#Enjoy, the spaces were left on purpose.
+#This conky covers the whole screen(set up accordingly) 
+#The positons of variables($example) and text in this config file will reflect on the conky itself
+#So if you find some things are not aligning then move the code arround in the config file.
+background yes
+update_interval 0.3
+
+cpu_avg_samples 2
+net_avg_samples 2
+temperature_unit celsius
+
+double_buffer yes
+no_buffers yes
+text_buffer_size 2048
+alignment middle_middle
+gap_x 1
+gap_y 1
+minimum_size 2560 1080
+maximum_width 2561
+maximum_height 1081
+own_window yes
+own_window_type desktop
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_visual yes
+own_window_argb_value 0
+
+border_inner_margin 1
+border_outer_margin 1
+
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_shade_color 112422
+
+use_xft yes
+xftfont UnitedKingdom:size=2
+xftalpha 0
+uppercase yes
+
+default_color ffdfe2
+own_window_colour 000000
+
+TEXT
+
+# Move Date/Time to the center-top
+${voffset 150}
+$alignc${font EarthOrbiterBold:size=30}
+$alignc${font EarthOrbiterTitle:size=55}${color 202978}${time %A}
+$alignc${font EarthOrbiterTitle:size=34}${color 202978}${time %e %B %Y}
+$alignc${font EarthOrbiterBold:size=30}
+
+# Data/Memory closer to the dock
+$alignc${font EarthOrbiter:bold:size=11}${color ffdfe2}Data ${totalup eth0} ${totaldown eth0}
+$alignc MEM $alignc $mem / $memmax $alignc $memperc%
+$alignc${membar 6,250}
+
+# Vertically offset for positioning bottom left
+${voffset 400}
+
+# Bottom left quarter
+${goto 50}${font EarthOrbiter:bold:size=14}READ
+${goto 50}${diskiograph_read 20,250}
+
+${goto 50}${font EarthOrbiter:bold:size=14}WRITE
+${goto 50}${diskiograph_write 20,250}
+
+# Vertically offset for the right side elements to match left side's height
+${voffset -160}
+
+# Bottom right quarter mirrored to same height as left
+${goto 2455}${font EarthOrbiter:bold:size=14}DOWN
+${goto 2265}${downspeedgraph eth0 20,250}
+
+${goto 2487}${font EarthOrbiter:bold:size=14}UP
+${goto 2264}${upspeedgraph eth0 20,250}

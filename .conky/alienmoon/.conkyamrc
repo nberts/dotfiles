@@ -1,0 +1,73 @@
+update_interval 0.3
+cpu_avg_samples 2
+net_avg_samples 2
+temperature_unit celsius
+
+double_buffer yes
+no_buffers yes
+text_buffer_size 2048
+alignment middle_middle
+gap_x 1
+gap_y 1
+minimum_size 2560 1080 #update this with your screen size
+maximum_width 2560 #update this with your screen width
+maximum_height 1080 #update this with your screen height
+own_window yes
+own_window_type desktop
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+own_window_argb_visual no
+own_window_argb_value 255
+
+border_inner_margin 1
+border_outer_margin 1
+draw_shades no
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_shade_color B82064
+
+use_xft yes
+xftfont UnitedKingdom:size=2
+xftalpha 1
+uppercase yes
+
+default_color B82064
+own_window_colour 000000
+
+TEXT
+
+# --- Date/Time Configuration ---
+${voffset 200} # Adjust to move Date/Time up or down
+$alignc${font EarthOrbiterBold:size=30}
+$alignc${font EarthOrbiterTitle:size=55}${color D7E85B}${time %A}
+$alignc${font EarthOrbiterTitle:size=34}${color D7E85B}${time %e %B %Y}
+$alignc${font EarthOrbiterBold:size=30}
+
+# --- Data/Memory Configuration ---
+${voffset 550} # Adjust to control space from the Date/Time
+$alignc${font EarthOrbiter:bold:size=11}${color D7E85B}Data ${totalup eth0} ${totaldown eth0}
+$alignc${color D7E85B}MEM $alignc ${mem} / ${memmax} $alignc ${memperc}%
+$alignc${color D7E85B}${membar 6,400} # Adjust width of memory bar
+
+# --- Disk I/O Configuration (Bottom Left) ---
+${voffset -100} # Adjust vertical positioning of bottom left section
+${goto 50}${font EarthOrbiter:bold:size=14}${color D7E85B}READ
+${voffset 0} # Space between label and graph
+${goto 50}${diskiograph_read 20,250}
+
+${voffset -10} # Reduced space between READ graph and WRITE label
+${goto 50}${font EarthOrbiter:bold:size=14}${color D7E85B}WRITE
+${voffset 0} # Space between label and graph
+${goto 50}${diskiograph_write 20,250}
+
+# --- Network Configuration (Bottom Right) ---
+${voffset -100} # Adjust vertical positioning of bottom right section
+${goto 2452}${font EarthOrbiter:bold:size=14}${color D7E85B}DOWN
+${voffset 0} # Space between label and graph
+${goto 2260}${downspeedgraph eth0 20,250}
+
+${voffset -10} # Reduced space between DOWN graph and UP label
+${goto 2483}${font EarthOrbiter:bold:size=14}${color D7E85B}UP
+${voffset 0} # Space between label and graph
+${goto 2260}${upspeedgraph eth0 20,250}
